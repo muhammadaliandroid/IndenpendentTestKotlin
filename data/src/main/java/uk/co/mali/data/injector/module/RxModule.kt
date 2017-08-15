@@ -12,7 +12,7 @@ import uk.co.mali.data.util.scheduler.RxSchedulers
 class RxModule {
 
     @Provides
-    fun providesIRxSchedulers(): IRxSchedulers {
+    fun provideIRxSchedulers(): IRxSchedulers {
         return RxSchedulers
 
     }

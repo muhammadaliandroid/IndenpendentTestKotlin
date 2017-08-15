@@ -2,8 +2,6 @@ package uk.co.mali.data
 
 import android.app.Application
 import uk.co.mali.data.injector.component.AppComponent
-import uk.co.mali.data.injector.component.DaggerAppComponent
-import uk.co.mali.data.injector.module.AppModule
 import uk.co.mali.data.injector.module.NetModule
 import uk.co.mali.data.injector.module.RestApiServiceModule
 import uk.co.mali.data.injector.module.RxModule
@@ -13,24 +11,27 @@ import uk.co.mali.data.injector.module.RxModule
  */
 class IndependentApplication : Application() {
 
-    var appComponent: AppComponent? = null
+    object IndependentApplication{
+        var appComponent: AppComponent? = null
+
+        fun initDaggerAppComponent() {
+            appComponent = DaggerAppComponent.builder()
+                    .netModule(NetModule())
+                    .rxModule(RxModule())
+                    .restApiServiceModule(RestApiServiceModule()).build()
+
+        }
+    }
+
 
 
     override fun onCreate() {
         super.onCreate()
 
 
-        initDaggerAppComponent()
-    }
-
-    private fun initDaggerAppComponent() {
-        appComponent = DaggerAppComponent.builder()
-                    .appModule(AppModule(this))
-                    .netModule(NetModule())
-                    .rxModule(RxModule())
-                    .restApiServiceModule(RestApiServiceModule()).build()
 
     }
+
 
 
 

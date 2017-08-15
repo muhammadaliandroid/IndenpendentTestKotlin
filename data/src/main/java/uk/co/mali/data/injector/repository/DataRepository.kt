@@ -10,7 +10,10 @@ import javax.inject.Inject
  * Created by alig2 on 15/08/2017.
  */
 
-class DataRepository(@Inject private var iRxSchedulers: IRxSchedulers, @Inject private var restApi: RestApi){
+class DataRepository(){
+
+    @Inject lateinit var iRxSchedulers : IRxSchedulers
+    @Inject lateinit var restApi: RestApi
 
     fun getDataObservable(): Observable<Data> {
 
