@@ -5,10 +5,10 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import uk.co.mali.data.IndependentApplication
-import uk.co.mali.data.injector.component.DaggerDataRespositoryComponent
-import uk.co.mali.data.injector.module.DataRepositoryModule
 import uk.co.mali.data.injector.repository.DataRepository
 import uk.co.mali.independenttest.model.pojo.kotlin.Data
+import uk.co.mali.ui.injector.component.DaggerDataRespositoryComponent
+import uk.co.mali.ui.injector.module.DataRepositoryModule
 import javax.inject.Inject
 
 /**
@@ -19,10 +19,11 @@ class Presenter {
     @Inject lateinit var dataRepository : DataRepository
 
     init {
-                DaggerDataRespositoryComponent.builder()
-                .appComponent(IndependentApplication.IndependentApplication.appComponent)
-                .dataRepositoryModule(DataRepositoryModule()).build()
-                .inject(dataRepository)
+        DaggerDataRespositoryComponent.builder()
+                .dataRepositoryModule(DataRepositoryModule())
+                .appComponent(IndependentApplication.appComponent)
+                .build()
+                .inject(this)
 
     }
 

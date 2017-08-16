@@ -1,4 +1,4 @@
-package uk.co.mali.data.injector.scope
+package uk.co.mali.ui.injector.scope
 
 import java.lang.annotation.Retention
 import java.lang.annotation.RetentionPolicy

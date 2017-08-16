@@ -4,6 +4,7 @@ import dagger.Component
 import uk.co.mali.data.injector.module.NetModule
 import uk.co.mali.data.injector.module.RestApiServiceModule
 import uk.co.mali.data.injector.module.RxModule
+import uk.co.mali.data.injector.repository.DataRepository
 import uk.co.mali.data.injector.scope.AppScope
 import uk.co.mali.data.util.scheduler.IRxSchedulers
 import uk.co.mali.independenttest.model.api.RestApi
@@ -15,6 +16,7 @@ import uk.co.mali.independenttest.model.api.RestApi
 @AppScope
 @Component(modules = arrayOf(NetModule::class,RxModule::class,RestApiServiceModule::class))
 interface AppComponent {
+    fun inject(dataRepository: DataRepository)
     fun iRxSchedulers(): IRxSchedulers
     fun restApiService():RestApi
 }

@@ -18,11 +18,15 @@ import java.io.File
  */
 
 @Module
-class NetModule {
+class NetModule(private val context: Context) {
+
+
+
+
 
     @AppScope
     @Provides
-    fun provideCacheFile(context: Context):File{
+    fun provideCacheFile(): File {
         return context.filesDir
     }
 
